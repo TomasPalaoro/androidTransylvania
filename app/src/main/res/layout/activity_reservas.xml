@@ -40,8 +40,9 @@
         android:id="@+id/botonReservar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/datePickerEntrada"
+        android:layout_below="@id/numeroMenores"
         android:layout_centerHorizontal="true"
+        android:onClick="buscarPulsado"
         android:text="Buscar" />
 
     <!--no se podrá escribir en él, focusable false clickable true -->
@@ -62,5 +63,55 @@
         android:textAlignment="center"
         android:textColorHint="#1E88E5"
         android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/numeroAdultos"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePickerEntrada"
+        android:layout_alignStart="@id/botonReservar"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="#1E88E5" />
+
+    <EditText
+        android:id="@+id/numeroMenores"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/numeroAdultos"
+        android:layout_alignStart="@id/botonReservar"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#1E88E5" />
+
+    <TextView
+        android:id="@+id/textoAdultos"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/numeroAdultos"
+        android:layout_toEndOf="@id/numeroAdultos"
+        android:text="Adultos"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textoMenores"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/numeroMenores"
+        android:layout_toEndOf="@id/numeroMenores"
+        android:text="Niños"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
 </RelativeLayout>
