@@ -9,28 +9,36 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 public class ReservasActivity extends AppCompatActivity {
-    EditText etdatePicker;
+    EditText pickerEntrada, pickerSalida;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
 
-        etdatePicker = (EditText) findViewById(R.id.editTextDatePicker);
-        etdatePicker.setOnClickListener(new View.OnClickListener() {
+        pickerEntrada = (EditText) findViewById(R.id.datePickerEntrada);
+        pickerSalida = (EditText) findViewById(R.id.datePickerSalida);
+
+        pickerEntrada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarSeleccionFecha();
+                mostrarSeleccionFecha(pickerEntrada);
+            }
+        });
+        pickerSalida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSeleccionFecha(pickerSalida);
             }
         });
     }
 
-    private void mostrarSeleccionFecha() {
+    private void mostrarSeleccionFecha(final EditText editText) {
         DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 porque enero es 0
                 final String fechaSeleccionada = day + " / " + (month+1) + " / " + year;
-                etdatePicker.setText(fechaSeleccionada);
+                editText.setText(fechaSeleccionada);
             }
         });
 
