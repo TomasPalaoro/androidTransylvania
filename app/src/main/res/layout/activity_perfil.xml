@@ -14,4 +14,68 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         tools:layout="@layout/fragment_nav_bar" />
+
+    <TextView
+        android:id="@+id/tituloPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/slimespooky"
+        android:text="Mi perfil"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <ImageView
+        android:id="@+id/imagenPerfil"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/perfil"
+        android:layout_below="@id/tituloPerfil"/>
+
+    <EditText
+        android:id="@+id/etNombrePerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imagenPerfil"
+        android:layout_alignStart="@id/tituloPerfil"
+        android:ems="10"
+        android:hint="Nombre Completo"
+        android:inputType="textPersonName"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/etCorreoPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNombrePerfil"
+        android:layout_alignStart="@id/etNombrePerfil"
+        android:ems="10"
+        android:hint="Correo electrónico"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="ejemplo@prueba.gmail" />
+
+    <Button
+        android:id="@+id/botonAplicarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/etCorreoPerfil"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Guardar cambios" />
+
+    <ImageView
+        android:id="@+id/iconoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/etNombrePerfil"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/etNombrePerfil"
+        android:background="@color/white"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
 </RelativeLayout>
