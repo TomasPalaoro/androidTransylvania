@@ -120,12 +120,12 @@
         android:textSize="16sp" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentNavbar"
+        android:id="@+id/fragmentNavbarReservas"
         android:name="com.example.hoteltransylvania.NavBarFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_nav_bar"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        tools:layout="@layout/fragment_nav_bar" />
 
 
 </RelativeLayout>
