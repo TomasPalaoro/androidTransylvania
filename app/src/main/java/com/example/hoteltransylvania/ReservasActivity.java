@@ -16,31 +16,11 @@ public class ReservasActivity extends AppCompatActivity {
     static boolean entradaIntroducida, salidaIntroducida;
     EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores;
 
-    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
-
-        bottomNav = (BottomNavigationView) findViewById(R.id.bottomNav);
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.home:
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.perfil:
-                    Toast.makeText(this, "perfil", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.chat:
-                    Toast.makeText(this, "chat", Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        });
 
         pickerEntrada = (EditText) findViewById(R.id.datePickerEntrada);
         entradaIntroducida = false;

@@ -119,14 +119,13 @@
         android:textColor="@color/white"
         android:textSize="16sp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavbar"
+        android:name="com.example.hoteltransylvania.NavBarFragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/fondoNavBar"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/nav_inferior" />
+        tools:layout="@layout/fragment_nav_bar"
+        android:layout_alignParentBottom="true"/>
+
 
 </RelativeLayout>
