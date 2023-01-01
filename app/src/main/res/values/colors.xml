@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="fondoOscuro">#1C1749</color>
+    <color name="boton">#BF5827</color>
+    <color name="textoEspecial">#F8CF67</color>
+    <color name="fondoNavBar">#CC000000</color>
 </resources>
