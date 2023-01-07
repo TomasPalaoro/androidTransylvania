@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
             Toast.makeText(this, "login correcto", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ReservasActivity.class);
+            Intent intent = new Intent(this, InicioActivity.class);
             startActivity(intent);
             finish();
         }

@@ -28,7 +28,7 @@ public class NavBarFragment extends Fragment {
             Class<?> activityDestino = null;
             switch (item.getItemId()){
                 case R.id.home:
-                    activityDestino = ReservasActivity.class;
+                    activityDestino = InicioActivity.class;
                     break;
                 case R.id.perfil:
                     activityDestino = PerfilActivity.class;
