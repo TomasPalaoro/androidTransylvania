@@ -15,12 +15,12 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void irReservas(View view) {
-        Intent intent = new Intent(this, ReservasActivity.class);
+        Intent intent = new Intent(this, ReservasActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void irOcio(View view) {
-        Intent intent = new Intent(this, OcioActivity.class);
+        Intent intent = new Intent(this, OcioActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 }

@@ -41,7 +41,7 @@ public class NavBarFragment extends Fragment {
                     break;
             }
             if (!getActivity().getClass().equals(activityDestino)){
-                Intent i = new Intent(getActivity().getApplicationContext(), activityDestino);
+                Intent i = new Intent(getActivity().getApplicationContext(), activityDestino).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
             }
             return true;
