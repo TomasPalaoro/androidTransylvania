@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondoOscuro"
+    tools:context=".InicioActivity">
+
+    <ImageButton
+        android:id="@+id/botonOcio"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/botonReservas"
+        android:layout_marginTop="5dp"
+        android:background="#673AB7"
+        android:contentDescription="ocio"
+        android:onClick="irOcio"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ocio" />
+
+    <ImageButton
+        android:id="@+id/botonReservas"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/fragmentTop"
+        android:layout_marginTop="60dp"
+        android:background="#3F51B5"
+        android:contentDescription="reservas"
+        android:onClick="irReservas"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/reservas" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:layout_alignParentBottom="true"
+        android:name="com.example.hoteltransylvania.NavBarFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_nav_bar" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentTop"
+        android:name="com.example.hoteltransylvania.TopImageFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_top_image" />
+</RelativeLayout>
