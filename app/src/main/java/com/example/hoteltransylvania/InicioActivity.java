@@ -2,6 +2,9 @@ package com.example.hoteltransylvania;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,32 +16,43 @@ import com.google.android.material.navigation.NavigationView;
 public class InicioActivity extends AppCompatActivity {
 
     NavigationView navigationView;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        OcioFragment ocioFragment = new OcioFragment();
+        ReservasFragment reservasFragment = new ReservasFragment();
+
         navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.miDrawer);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (item.getItemId()){
                     case R.id.reservas:
-                        hacerIntent(ReservasActivity.class);
+                        fragmentTransaction.replace(R.id.fragmentPrincipal, reservasFragment);
+                        fragmentTransaction.commit();
                         break;
                     case R.id.ocio:
-                        hacerIntent(OcioActivity.class);
+                        fragmentTransaction.replace(R.id.fragmentPrincipal, ocioFragment);
+                        fragmentTransaction.commit();
                         break;
                     default:
                         break;
                 }
+                drawerLayout.closeDrawers();
                 return false;
             }
         });
     }
-
+    /*
     public void irReservas(View view) {
         hacerIntent(ReservasActivity.class);
     }
@@ -50,5 +64,5 @@ public class InicioActivity extends AppCompatActivity {
     public void hacerIntent(Class<?> activityDestino){
         Intent intent = new Intent(this, activityDestino).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-    }
+    }*/
 }

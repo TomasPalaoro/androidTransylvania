@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReservasFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/datePickerSalida"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/datePickerEntrada"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Fecha de salida"
+            android:inputType="date"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/textoEspecial" />
+
+        <TextView
+            android:id="@+id/tituloReservar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/fragmentContainerView4"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/slimespooky"
+            android:text="Reservar ahora"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/botonReservar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numeroMenores"
+            android:layout_centerHorizontal="true"
+            android:onClick="buscarPulsado"
+            android:text="Buscar"
+            android:backgroundTint="@color/boton"/>
+
+        <!--no se podrá escribir en él, focusable false clickable true -->
+        <EditText
+            android:id="@+id/datePickerEntrada"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tituloReservar"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:clickable="true"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Fecha de entrada"
+            android:inputType="date"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColorHint="@color/textoEspecial"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/numeroAdultos"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datePickerEntrada"
+            android:layout_alignStart="@id/botonReservar"
+            android:layout_marginStart="25dp"
+            android:ems="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:text=""
+            android:textAlignment="center"
+            android:hint="1"
+            android:textColorHint="@color/textoEspecial"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/numeroMenores"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numeroAdultos"
+            android:layout_alignStart="@id/botonReservar"
+            android:layout_marginStart="25dp"
+            android:ems="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:text=""
+            android:textAlignment="center"
+            android:hint="0"
+            android:textColorHint="@color/textoEspecial"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/textoAdultos"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/numeroAdultos"
+            android:layout_toEndOf="@id/numeroAdultos"
+            android:text="Adultos"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textoMenores"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/numeroMenores"
+            android:layout_toEndOf="@id/numeroMenores"
+            android:text="Niños"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentNavbarReservas"
+            android:name="com.example.hoteltransylvania.NavBarFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            tools:layout="@layout/fragment_nav_bar" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView4"
+            android:name="com.example.hoteltransylvania.TopImageFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_top_image" />
+
+    </RelativeLayout>
+</FrameLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondoOscuro"
+    android:background="@drawable/fondocalabazas"
     tools:context=".InicioActivity">
 
     <ImageButton
@@ -17,6 +17,7 @@
         android:contentDescription="ocio"
         android:onClick="irOcio"
         android:scaleType="fitXY"
+        android:visibility="gone"
         app:srcCompat="@drawable/ocio" />
 
     <ImageButton
@@ -29,14 +30,16 @@
         android:contentDescription="reservas"
         android:onClick="irReservas"
         android:scaleType="fitXY"
+        android:visibility="gone"
         app:srcCompat="@drawable/reservas" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/fragmentBottom"
         android:name="com.example.hoteltransylvania.NavBarFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
         tools:layout="@layout/fragment_nav_bar" />
 
     <androidx.fragment.app.FragmentContainerView
@@ -44,5 +47,13 @@
         android:name="com.example.hoteltransylvania.TopImageFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         tools:layout="@layout/fragment_top_image" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentPrincipal"
+        android:name="com.example.hoteltransylvania.ReservasFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_reservas" />
 </RelativeLayout>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondocalabazas"
+    tools:context=".OcioFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".OcioActivity">
+    android:gravity="center">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView3"
@@ -30,3 +31,4 @@
         tools:layout="@layout/fragment_nav_bar" />
 
 </LinearLayout>
+</FrameLayout>
