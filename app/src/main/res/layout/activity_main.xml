@@ -7,7 +7,7 @@
     android:background="@drawable/fondoandroid"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/titulo"

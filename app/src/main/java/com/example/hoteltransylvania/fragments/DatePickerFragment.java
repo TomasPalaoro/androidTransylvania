@@ -1,4 +1,4 @@
-package com.example.hoteltransylvania;
+package com.example.hoteltransylvania.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

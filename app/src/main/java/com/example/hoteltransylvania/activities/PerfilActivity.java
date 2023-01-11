@@ -1,8 +1,10 @@
-package com.example.hoteltransylvania;
+package com.example.hoteltransylvania.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.hoteltransylvania.R;
 
 public class PerfilActivity extends AppCompatActivity {
 

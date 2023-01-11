@@ -1,4 +1,4 @@
-package com.example.hoteltransylvania;
+package com.example.hoteltransylvania.fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.hoteltransylvania.R;
 
 public class ReservasFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.hoteltransylvania;
+package com.example.hoteltransylvania.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.hoteltransylvania.R;
 
 public class MainActivity extends AppCompatActivity {
 
