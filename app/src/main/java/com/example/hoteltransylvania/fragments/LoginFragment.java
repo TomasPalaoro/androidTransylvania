@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.activities.InicioActivity;
 import com.example.hoteltransylvania.activities.MainActivity;
-import com.example.hoteltransylvania.activities.RegistroActivity;
 
 public class LoginFragment extends Fragment {
 
