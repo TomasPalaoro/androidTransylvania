@@ -19,7 +19,7 @@ public class Usuario {
     @ColumnInfo(name ="password")
     String password;
 
-    public Usuario(@NonNull String email, String nombre, String apellidos, @NonNull String password) {
+    public Usuario(@NonNull String email, @NonNull String password, String nombre, String apellidos) {
         this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;

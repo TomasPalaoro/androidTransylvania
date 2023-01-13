@@ -1,5 +1,6 @@
 package com.example.hoteltransylvania.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,12 +33,17 @@ public class LoginFragment extends Fragment {
 
     Button botonRegistrarse, botonEntrar;
 
+    SharedPreferences sharedPreferences;
+    TextView mensajes;
+
+    //CONEXION CON VIEW MODEL
     private UsuarioViewModel usuarioViewModel;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
     }
+    ////
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,12 +55,14 @@ public class LoginFragment extends Fragment {
                 System.out.println(usuario.getEmail());
             }
         });
+        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);;
 
         botonRegistrarse = view.findViewById(R.id.registrarme);
         botonEntrar = view.findViewById(R.id.boton);
         cajaNombre = view.findViewById(R.id.email);
         cajaPass = view.findViewById(R.id.pass);
         switchRecordar = view.findViewById(R.id.switchRecordar);
+        mensajes = view.findViewById(R.id.mensaje);
         SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
         if (preferencias.getBoolean("recordar",false)){
             cajaNombre.setText(preferencias.getString("username",""));
@@ -71,31 +79,43 @@ public class LoginFragment extends Fragment {
         botonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
-                nombreGuardado = preferencias.getString("username","");
-                passGuardado = preferencias.getString("password","");
-
-                //INICIAR SESIÓN
                 nombre = cajaNombre.getText().toString();
                 pass = cajaPass.getText().toString();
-                if (!nombre.equals(nombreGuardado)) Toast.makeText(getActivity(), "Nombre incorrecto", Toast.LENGTH_SHORT).show();
-                else if (!pass.equals(passGuardado)) Toast.makeText(getActivity(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                else{
-                    SharedPreferences.Editor editor = preferencias.edit();
-                    if (switchRecordar.isChecked()){
-                        editor.putBoolean("recordar",true);
-                        editor.apply();
-                    }else{
-                        editor.putBoolean("recordar",false);
-                        editor.apply();
-                    }
-                    Toast.makeText(getActivity(), "login correcto", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), InicioActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
+
+                comprobarUsuario();
             }
         });
         return view;
+    }
+
+    public void continuar(){
+        Intent intent = new Intent(getActivity(), InicioActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    public void comprobarUsuario(){
+        if(!nombre.equals("") && !pass.equals("")){
+            usuarioViewModel.devolverUsuarioConId(nombre,pass).observe(getViewLifecycleOwner(),objetoUsuario->{
+                if(objetoUsuario==null){
+                    mensajes.setText("Usuario NO encontrado");
+                }
+                else{
+                    Toast.makeText(getActivity(), "login correcto", Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("nombre",objetoUsuario.getNombre());
+                    editor.putString("email",objetoUsuario.getEmail());
+                    if (switchRecordar.isChecked()){
+                        editor.putBoolean("recordar",true);
+                    }else{
+                        editor.putBoolean("recordar",false);
+                    }
+                    editor.apply();
+
+                    continuar();
+                }
+            });
+        }
+        else mensajes.setText("Rellene los campos");
     }
 }

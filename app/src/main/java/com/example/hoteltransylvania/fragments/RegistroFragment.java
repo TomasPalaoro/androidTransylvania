@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.activities.MainActivity;
+import com.example.hoteltransylvania.data.entities.Usuario;
+import com.example.hoteltransylvania.viewmodels.UsuarioViewModel;
 
 import java.util.regex.Pattern;
 
@@ -22,11 +25,20 @@ import java.util.regex.Pattern;
 public class RegistroFragment extends Fragment {
     Button confirmar;
 
-    TextView cajaNombre, cajaPass, cajaPass2;
+    TextView cajaNombre, cajaPass, cajaPass2, mensajes;
 
     String nombre = "";
     String pass = "";
     String pass2 = "";
+
+    //CONEXION CON VIEWMODEL
+    private UsuarioViewModel usuarioViewModel;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+    }
+    ////
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +47,7 @@ public class RegistroFragment extends Fragment {
         cajaNombre = view.findViewById(R.id.email);
         cajaPass = view.findViewById(R.id.pass);
         cajaPass2 = view.findViewById(R.id.pass2);
+        mensajes = view.findViewById(R.id.warnings);
 
         confirmar = view.findViewById(R.id.boton);
 
@@ -44,16 +57,13 @@ public class RegistroFragment extends Fragment {
                 nombre = cajaNombre.getText().toString();
                 pass = cajaPass.getText().toString();
                 pass2 = cajaPass2.getText().toString();
-                if (!pass.equals(pass2)) Toast.makeText(getActivity(), "No coinciden", Toast.LENGTH_SHORT).show();
+                if (!pass.equals(pass2)) mensajes.setText("Las contraseñas no coinciden");
                 else{
-                    if (!validarNombre(nombre)) Toast.makeText(getActivity(), "Nombre no valido", Toast.LENGTH_SHORT).show();
-                    else if (!validarPass(pass)) Toast.makeText(getActivity(), "Contraseña no valida", Toast.LENGTH_SHORT).show();
+                    if (!validarNombre(nombre)) mensajes.setText("Nombre no válido");
+                    else if (!validarPass(pass)) mensajes.setText("Contraseña no válida");
                     else{
-                        SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
-                        SharedPreferences.Editor editor = preferencias.edit();
-                        editor.putString("username",nombre);
-                        editor.putString("password",pass);
-                        editor.apply();
+                        mensajes.setText("");
+                        registrar();
                         Toast.makeText(getActivity(), "registro correcto", Toast.LENGTH_SHORT).show();
                         //IR A PANTALLA DE LOGIN
                         MainActivity.cambiarFragment("login");
@@ -63,6 +73,10 @@ public class RegistroFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void registrar(){
+        usuarioViewModel.insertarUsuario(new Usuario(nombre,pass,"",""));
     }
 
     public final static boolean validarPass(String pass){
