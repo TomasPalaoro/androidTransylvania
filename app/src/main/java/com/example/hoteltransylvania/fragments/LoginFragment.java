@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.activities.InicioActivity;
 import com.example.hoteltransylvania.activities.MainActivity;
+import com.example.hoteltransylvania.data.entities.Usuario;
+import com.example.hoteltransylvania.viewmodels.UsuarioViewModel;
 
 public class LoginFragment extends Fragment {
 
@@ -29,10 +32,23 @@ public class LoginFragment extends Fragment {
 
     Button botonRegistrarse, botonEntrar;
 
+    private UsuarioViewModel usuarioViewModel;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        usuarioViewModel.devolverTodosUsuarios().observe(getViewLifecycleOwner(), listaUsuarios->{
+            for (Usuario usuario:listaUsuarios){
+                System.out.println(usuario.getEmail());
+            }
+        });
 
         botonRegistrarse = view.findViewById(R.id.registrarme);
         botonEntrar = view.findViewById(R.id.boton);
