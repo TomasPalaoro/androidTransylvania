@@ -10,12 +10,12 @@ import androidx.room.PrimaryKey;
         @ForeignKey(
                 entity = Usuario.class,
                 parentColumns = "email",
-                childColumns = "idUsuario"
+                childColumns = "id_usuario"
         ),
         @ForeignKey(
                 entity = Habitacion.class,
                 parentColumns = "id",
-                childColumns = "idHabitacion"
+                childColumns = "id_habitacion"
         )
 })
 public class Reserva {
@@ -32,17 +32,19 @@ public class Reserva {
     @ColumnInfo(name ="fecha_salida")
     String fecha_salida;
 
-    @NonNull
-    @ColumnInfo(name ="idUsuario")
+    @ColumnInfo(name ="num_personas")
+    int num_personas;
+
+    @ColumnInfo(name ="id_usuario")
     String idUsuario;
 
-    @NonNull
-    @ColumnInfo(name ="idHabitacion")
+    @ColumnInfo(name ="id_habitacion")
     String idHabitacion;
 
-    public Reserva(@NonNull String fecha_entrada, @NonNull String fecha_salida, @NonNull String idUsuario, @NonNull String idHabitacion) {
+    public Reserva(@NonNull String fecha_entrada, @NonNull String fecha_salida, int num_personas, @NonNull String idUsuario, @NonNull String idHabitacion) {
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
+        this.num_personas = num_personas;
         this.idUsuario = idUsuario;
         this.idHabitacion = idHabitacion;
     }
@@ -73,21 +75,27 @@ public class Reserva {
         this.fecha_salida = fecha_salida;
     }
 
-    @NonNull
+    public int getNum_personas() {
+        return num_personas;
+    }
+
+    public void setNum_personas(int num_personas) {
+        this.num_personas = num_personas;
+    }
+
     public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(@NonNull String idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    @NonNull
     public String getIdHabitacion() {
         return idHabitacion;
     }
 
-    public void setIdHabitacion(@NonNull String idHabitacion) {
+    public void setIdHabitacion(String idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
 }

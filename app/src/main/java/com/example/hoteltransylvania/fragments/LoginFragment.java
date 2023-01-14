@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
                 System.out.println(usuario.getEmail());
             }
         });
-        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);;
+        sharedPreferences = getActivity().getSharedPreferences("datos", 0);
 
         botonRegistrarse = view.findViewById(R.id.registrarme);
         botonEntrar = view.findViewById(R.id.boton);
@@ -63,9 +63,9 @@ public class LoginFragment extends Fragment {
         cajaPass = view.findViewById(R.id.pass);
         switchRecordar = view.findViewById(R.id.switchRecordar);
         mensajes = view.findViewById(R.id.mensaje);
-        SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
-        if (preferencias.getBoolean("recordar",false)){
-            cajaNombre.setText(preferencias.getString("username",""));
+        //SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
+        if (sharedPreferences.getBoolean("recordar",false)){
+            cajaNombre.setText(sharedPreferences.getString("username",""));
             switchRecordar.setChecked(true);
         }
 
