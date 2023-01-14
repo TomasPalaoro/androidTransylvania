@@ -80,6 +80,7 @@
                 android:id="@+id/boton"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
+                android:backgroundTint="@color/purple_700"
                 android:text="ENTRAR"
                 android:textSize="20sp" />
 

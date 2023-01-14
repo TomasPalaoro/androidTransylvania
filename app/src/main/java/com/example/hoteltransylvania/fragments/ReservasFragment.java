@@ -62,8 +62,7 @@ public class ReservasFragment extends Fragment {
 
                     if (adultos<1) Toast.makeText(getActivity().getApplicationContext(), "Debe ir al menos un adulto", Toast.LENGTH_SHORT).show();
                     else {
-                        guardarDatos();
-                        Toast.makeText(getActivity(), adultos+" adultos "+menores+" niños "+fechaEntrada+" - "+fechaSalida, Toast.LENGTH_SHORT).show();
+                        buscar();
                     }
                 }
                 else{
@@ -118,6 +117,18 @@ public class ReservasFragment extends Fragment {
         });
 
         datePickerFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    public void buscar(){
+        habitacionViewModel.devolverTodasHabitaciones().observe(getViewLifecycleOwner(),listaHabitaciones->{
+            if(listaHabitaciones==null){
+                System.out.println("null");
+            }else{
+                for (Habitacion hab :listaHabitaciones){
+                    System.out.println("Hab"+hab.getId()+", ");
+                }
+            }
+        });
     }
 
     public void inicializar(){

@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import com.example.hoteltransylvania.R;
 
-public class CustomAdapter extends BaseAdapter {
+public class OcioCustomAdapter extends BaseAdapter {
     Context context;
     int[] arrayImagenes;
     String[] nombres;
     LayoutInflater inflater;
 
-    CustomAdapter(Context context, int[] imagenes, String[] nombres){
+    OcioCustomAdapter(Context context, int[] imagenes, String[] nombres){
         this.context = context;
         this.arrayImagenes = imagenes;
         this.nombres = nombres;

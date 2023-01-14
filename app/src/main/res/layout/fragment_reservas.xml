@@ -120,5 +120,13 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView2"
+            android:name="com.example.hoteltransylvania.fragments.HabitacionesFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/botonReservar"
+            tools:layout="@layout/fragment_habitaciones" />
+
     </RelativeLayout>
 </FrameLayout>

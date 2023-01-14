@@ -30,7 +30,7 @@ public class OcioFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_ocio, container, false);
 
         GridView grid = vista.findViewById(R.id.grid);
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getApplicationContext(), misImagenes, nombres);
+        OcioCustomAdapter customAdapter = new OcioCustomAdapter(getActivity().getApplicationContext(), misImagenes, nombres);
         grid.setAdapter(customAdapter);
 
         return vista;

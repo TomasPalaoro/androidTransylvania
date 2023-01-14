@@ -44,6 +44,9 @@ public class RegistroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_registro, container, false);
+
+        inicializar();
+
         cajaNombre = view.findViewById(R.id.email);
         cajaPass = view.findViewById(R.id.pass);
         cajaPass2 = view.findViewById(R.id.pass2);
@@ -110,5 +113,9 @@ public class RegistroFragment extends Fragment {
 
     public final static boolean isValidName(String target) {
         return Pattern.compile("^(?=.*[a-zA-Z가-힣])[a-zA-Z가-힣]{1,}$").matcher(target).matches();
+    }
+
+    public void inicializar(){
+        usuarioViewModel.insertarUsuario(new Usuario("Tomas","12345asda","Tomás","Palaoro"));
     }
 }
