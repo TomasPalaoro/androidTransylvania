@@ -32,8 +32,8 @@ public interface HabitacionDao {
     @Query("SELECT * FROM habitaciones WHERE id = :miId")
     public LiveData<Habitacion> getOne(String miId);
 
-    @Query("SELECT * FROM habitaciones WHERE precio BETWEEN :minPrecio AND :maxPrecio")
-    public LiveData<List<Habitacion>> getAllPrices(int minPrecio, int maxPrecio);
+    @Query("SELECT * FROM habitaciones WHERE precio <= :maxPrecio AND numero_personas >= :numPersonas")
+    public LiveData<List<Habitacion>> getWhere(Integer maxPrecio, Integer numPersonas);
 
     @Query("SELECT * FROM habitaciones WHERE descrip LIKE :search ")
     public LiveData<List<Habitacion>> findHabitacion(String search);

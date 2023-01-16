@@ -37,4 +37,8 @@ public class HabitacionViewModel extends AndroidViewModel {
     public LiveData<Habitacion> devolverHabitacionConId(String miD){
         return hRepo.rDevolverHabitacionConId(miD);
     }
+
+    public LiveData<List<Habitacion>> devolverHabitacionesWhere(Integer maxPrecion, Integer numPersonas){
+        return hRepo.rDevolverHabitacionesWhere(maxPrecion,numPersonas);
+    }
 }

@@ -12,6 +12,10 @@ public class Habitacion {
     @ColumnInfo(name ="id")
     String id;
 
+    @NonNull
+    @ColumnInfo(name="numero_personas")
+    Integer numero_personas;
+
     @ColumnInfo(name ="descrip")
     String descrip;
 
@@ -19,10 +23,11 @@ public class Habitacion {
     double precio;
 
     @ColumnInfo(name ="imagen")
-    int imagen;
+    Integer imagen;
 
-    public Habitacion(@NonNull String id, String descrip, double precio, int imagen) {
+    public Habitacion(@NonNull String id, @NonNull Integer numero_personas, String descrip, double precio, Integer imagen) {
         this.id = id;
+        this.numero_personas = numero_personas;
         this.descrip = descrip;
         this.precio = precio;
         this.imagen = imagen;
@@ -35,6 +40,15 @@ public class Habitacion {
 
     public void setId(@NonNull String id) {
         this.id = id;
+    }
+
+    @NonNull
+    public Integer getNumero_personas() {
+        return numero_personas;
+    }
+
+    public void setNumero_personas(@NonNull Integer numero_personas) {
+        this.numero_personas = numero_personas;
     }
 
     public String getDescrip() {
@@ -53,11 +67,11 @@ public class Habitacion {
         this.precio = precio;
     }
 
-    public int getImagen() {
+    public Integer getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(Integer imagen) {
         this.imagen = imagen;
     }
 }

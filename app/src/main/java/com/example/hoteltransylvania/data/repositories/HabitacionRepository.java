@@ -46,4 +46,8 @@ public class HabitacionRepository {
         return habitacionDao.getOne(miId);
     }
 
+    public LiveData<List<Habitacion>> rDevolverHabitacionesWhere(Integer maxPrecio, Integer numPersonas){
+        return habitacionDao.getWhere(maxPrecio,numPersonas);
+    }
+
 }

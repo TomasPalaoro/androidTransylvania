@@ -145,8 +145,8 @@ public class ReservasFragment extends Fragment {
     }
 
     public void inicializar(){
-        habitacionViewModel.insertarHabitacion(new Habitacion("1","una habitacion",23,111));
-        habitacionViewModel.insertarHabitacion(new Habitacion("2","otra habitacion",10,222));
-        habitacionViewModel.insertarHabitacion(new Habitacion("3","y otra habitacion",50,333));
+        habitacionViewModel.insertarHabitacion(new Habitacion("1", 2,"una habitacion",23,111));
+        habitacionViewModel.insertarHabitacion(new Habitacion("2", 1,"otra habitacion",10,222));
+        habitacionViewModel.insertarHabitacion(new Habitacion("3", 4,"y otra habitacion",50,333));
     }
 }
