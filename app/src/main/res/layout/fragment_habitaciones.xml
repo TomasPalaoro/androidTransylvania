@@ -11,6 +11,13 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/mensajeHabitacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:text="TextView" />
+
         <GridView
             android:id="@+id/gridHabitaciones"
             android:layout_width="match_parent"

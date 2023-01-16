@@ -1,11 +1,13 @@
 package com.example.hoteltransylvania.fragments;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -28,6 +30,10 @@ public class ReservasFragment extends Fragment {
     int adultos,menores;
     String fechaEntrada, fechaSalida,idUsuario,idHabitacion;
     SharedPreferences sharedPreferences;
+    //FragmentContainerView fragmentContainerView;
+    HabitacionesFragment habitacionesFragment;
+    FragmentManager fragmentManager;
+    int precioMax;
 
     //CONEXION CON VIEW MODEL
     private ReservaViewModel reservaViewModel;
@@ -47,12 +53,20 @@ public class ReservasFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("datos", 0);
         idUsuario = sharedPreferences.getString("email","Tomas");
         idHabitacion = "1";
+        adultos = 1;
+        menores = 0;
+        precioMax = 50;
         inicializar();
         buscar = view.findViewById(R.id.botonReservar);
+
+        //instanciar busqueda de habitaciones
+        fragmentManager = getChildFragmentManager();
+
 
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                iniciarFragmentHabitaciones();
                 if (entradaIntroducida && salidaIntroducida){
 
                     adultos = Integer.parseInt(numeroAdultos.getText().toString());
@@ -62,7 +76,7 @@ public class ReservasFragment extends Fragment {
 
                     if (adultos<1) Toast.makeText(getActivity().getApplicationContext(), "Debe ir al menos un adulto", Toast.LENGTH_SHORT).show();
                     else {
-                        buscar();
+                        iniciarFragmentHabitaciones();
                     }
                 }
                 else{
@@ -119,16 +133,15 @@ public class ReservasFragment extends Fragment {
         datePickerFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
-    public void buscar(){
-        habitacionViewModel.devolverTodasHabitaciones().observe(getViewLifecycleOwner(),listaHabitaciones->{
-            if(listaHabitaciones==null){
-                System.out.println("null");
-            }else{
-                for (Habitacion hab :listaHabitaciones){
-                    System.out.println("Hab"+hab.getId()+", ");
-                }
-            }
-        });
+    public void iniciarFragmentHabitaciones(){
+        habitacionesFragment = new HabitacionesFragment();
+        Bundle arguments = new Bundle();
+        arguments.putInt( "numeroPersonas" , (adultos+menores));
+        arguments.putInt("precioMaximo", precioMax);
+        habitacionesFragment.setArguments(arguments);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contenedorHabitaciones, habitacionesFragment);
+        fragmentTransaction.commit();
     }
 
     public void inicializar(){

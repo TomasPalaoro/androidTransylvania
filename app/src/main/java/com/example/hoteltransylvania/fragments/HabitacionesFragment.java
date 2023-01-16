@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.data.entities.Habitacion;
@@ -22,6 +23,9 @@ public class HabitacionesFragment extends Fragment {
 
     ArrayList<Integer> imagenes = new ArrayList<Integer>();
     ArrayList<String> descripciones = new ArrayList<String>();
+
+    TextView mensaje;
+    int personas, precioMax;
 
     //CONEXION CON VIEW MODEL
     private HabitacionViewModel habitacionViewModel;
@@ -38,7 +42,11 @@ public class HabitacionesFragment extends Fragment {
 
         grid = view.findViewById(R.id.gridHabitaciones);
 
-        buscar();
+        mensaje = view.findViewById(R.id.mensajeHabitacion);
+        Bundle arguments = getArguments();
+        personas = arguments.getInt("numeroPersonas");
+        precioMax = arguments.getInt("precioMaximo");
+        mensaje.setText(personas+" "+precioMax);
 
         return view;
     }
