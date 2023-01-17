@@ -1,6 +1,7 @@
 package com.example.hoteltransylvania.fragments;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,9 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hoteltransylvania.R;
@@ -34,6 +37,10 @@ public class ReservasFragment extends Fragment {
     HabitacionesFragment habitacionesFragment;
     FragmentManager fragmentManager;
     int precioMax;
+    TextView mensajeReservas;
+
+    static boolean entradaIntroducida, salidaIntroducida;
+    EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores, numeroPrecio;
 
     //CONEXION CON VIEW MODEL
     private ReservaViewModel reservaViewModel;
@@ -53,41 +60,17 @@ public class ReservasFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("datos", 0);
         idUsuario = sharedPreferences.getString("email","Tomas");
         idHabitacion = "1";
-        adultos = 1;
-        menores = 0;
-        precioMax = 50;
+        precioMax = 500;
         inicializar();
         buscar = view.findViewById(R.id.botonReservar);
+        mensajeReservas = view.findViewById(R.id.mensajeReservas);
 
         //instanciar busqueda de habitaciones
         fragmentManager = getChildFragmentManager();
 
-
-        buscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iniciarFragmentHabitaciones();
-                if (entradaIntroducida && salidaIntroducida){
-
-                    adultos = Integer.parseInt(numeroAdultos.getText().toString());
-                    menores = Integer.parseInt(numeroMenores.getText().toString());
-                    fechaEntrada = pickerEntrada.getText().toString();
-                    fechaSalida = pickerSalida.getText().toString();
-
-                    if (adultos<1) Toast.makeText(getActivity().getApplicationContext(), "Debe ir al menos un adulto", Toast.LENGTH_SHORT).show();
-                    else {
-                        iniciarFragmentHabitaciones();
-                    }
-                }
-                else{
-                    Toast.makeText(getActivity(), "Introduce una fecha", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        pickerEntrada = (EditText) view.findViewById(R.id.datePickerEntrada);
+        pickerEntrada = view.findViewById(R.id.datePickerEntrada);
         entradaIntroducida = false;
-        pickerSalida = (EditText) view.findViewById(R.id.datePickerSalida);
+        pickerSalida = view.findViewById(R.id.datePickerSalida);
         salidaIntroducida = false;
 
         pickerEntrada.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +88,42 @@ public class ReservasFragment extends Fragment {
             }
         });
 
-        numeroAdultos = (EditText) view.findViewById(R.id.numeroAdultos);
-        numeroMenores = (EditText) view.findViewById(R.id.numeroMenores);
-        
+        numeroAdultos = view.findViewById(R.id.numeroAdultos);
+        numeroMenores = view.findViewById(R.id.numeroMenores);
+        numeroPrecio = view.findViewById(R.id.numeroPrecio);
+
+        buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (entradaIntroducida && salidaIntroducida){
+                    mensajeReservas.setText("");
+                    if (numeroAdultos.getText().toString().equals("")) adultos = 1;
+                    else adultos = Integer.parseInt(numeroAdultos.getText().toString());
+                    if (numeroMenores.getText().toString().equals("")) menores = 0;
+                    else menores = Integer.parseInt(numeroMenores.getText().toString());
+                    if (numeroPrecio.getText().toString().equals("")) precioMax = 1000;
+                    else precioMax = Integer.parseInt(numeroPrecio.getText().toString());
+
+                    fechaEntrada = pickerEntrada.getText().toString();
+                    fechaSalida = pickerSalida.getText().toString();
+
+                    if (adultos<0) mensajeReservas.setText("Debe ir al menos un adulto");
+                    else{
+                        try {
+                            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                        } catch (Exception e) {}
+
+                        //INICIAR BUSQUEDA
+                        iniciarFragmentHabitaciones();
+                    }
+                }
+                else{
+                    mensajeReservas.setText("Introduce una fecha");
+                }
+            }
+        });
+
         return view;
     }
 
@@ -115,9 +131,6 @@ public class ReservasFragment extends Fragment {
         reservaViewModel.insertarReserva(new Reserva(fechaEntrada,fechaSalida,(adultos+menores),idUsuario,idHabitacion));
         System.out.println(fechaEntrada+" "+fechaSalida+" "+(adultos+menores)+" "+idUsuario+" "+idHabitacion);
     }
-
-    static boolean entradaIntroducida, salidaIntroducida;
-    EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores;
     
 
     private void mostrarSeleccionFecha(final EditText editText) {
@@ -145,8 +158,8 @@ public class ReservasFragment extends Fragment {
     }
 
     public void inicializar(){
-        habitacionViewModel.insertarHabitacion(new Habitacion("1", 2,"una habitacion",23,111));
-        habitacionViewModel.insertarHabitacion(new Habitacion("2", 1,"otra habitacion",10,222));
-        habitacionViewModel.insertarHabitacion(new Habitacion("3", 4,"y otra habitacion",50,333));
+        habitacionViewModel.insertarHabitacion(new Habitacion("1", 2,"una habitacion",23,R.drawable.habitacion));
+        habitacionViewModel.insertarHabitacion(new Habitacion("2", 1,"otra habitacion",10,R.drawable.habitacion));
+        habitacionViewModel.insertarHabitacion(new Habitacion("3", 4,"y otra habitacion",50,R.drawable.habitacion));
     }
 }

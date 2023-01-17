@@ -23,6 +23,7 @@ public class HabitacionesFragment extends Fragment {
 
     ArrayList<Integer> imagenes = new ArrayList<Integer>();
     ArrayList<String> descripciones = new ArrayList<String>();
+    ArrayList<Double> precios = new ArrayList<Double>();
 
     TextView mensaje;
     int personas, precioMax;
@@ -47,20 +48,22 @@ public class HabitacionesFragment extends Fragment {
         personas = arguments.getInt("numeroPersonas");
         precioMax = arguments.getInt("precioMaximo");
         mensaje.setText(personas+" "+precioMax);
+        buscar();
 
         return view;
     }
 
     public void buscar(){
-        habitacionViewModel.devolverTodasHabitaciones().observe(getViewLifecycleOwner(),listaHabitaciones->{
+        habitacionViewModel.devolverHabitacionesWhere(precioMax,personas).observe(getViewLifecycleOwner(),listaHabitaciones->{
             if(listaHabitaciones==null){
                 System.out.println("null");
             }else{
                 for (Habitacion hab :listaHabitaciones){
                     imagenes.add(hab.getImagen());
                     descripciones.add((hab.getDescrip()));
+                    precios.add(hab.getPrecio());
                 }
-                HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,descripciones);
+                HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,descripciones,precios);
                 grid.setAdapter(habitacionesCustomAdapter);
             }
         });

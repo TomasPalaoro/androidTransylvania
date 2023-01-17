@@ -16,12 +16,14 @@ public class HabitacionesCustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<Integer> arrayImagenes;
     ArrayList<String> descripcion;
+    ArrayList<Double> precios;
     LayoutInflater inflater;
 
-    HabitacionesCustomAdapter(Context context, ArrayList<Integer> imagenes, ArrayList<String> descripcion){
+    HabitacionesCustomAdapter(Context context, ArrayList<Integer> imagenes, ArrayList<String> descripcion, ArrayList<Double> precios){
         this.context = context;
         this.arrayImagenes = imagenes;
         this.descripcion = descripcion;
+        this.precios = precios;
         inflater=(LayoutInflater.from(context));
     }
     @Override
@@ -38,11 +40,13 @@ public class HabitacionesCustomAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.contenedor_imagen,viewGroup,false);
+        view = inflater.inflate(R.layout.imagen_habitacion,viewGroup,false);
         ImageView imageView = view.findViewById(R.id.miImagen);
-        TextView textView = view.findViewById(R.id.miTexto);
+        TextView descr = view.findViewById(R.id.miTexto);
+        TextView prec = view.findViewById(R.id.miPrecio);
         imageView.setImageResource(arrayImagenes.get(i));
-        textView.setText(descripcion.get(i));
+        descr.setText(descripcion.get(i));
+        prec.setText(precios.get(i).toString()+"€");
         return view;
     }
 }

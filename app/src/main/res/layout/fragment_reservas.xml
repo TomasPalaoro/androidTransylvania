@@ -8,6 +8,34 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textoPrecio"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/numeroPrecio"
+            android:layout_toEndOf="@id/numeroPrecio"
+            android:text="Precio Max"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/numeroPrecio"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/numeroAdultos"
+            android:layout_toEndOf="@id/numeroAdultos"
+            android:layout_marginLeft="80dp"
+            android:ems="10"
+            android:hint="€€"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/textoEspecial" />
+
         <EditText
             android:id="@+id/datePickerSalida"
             android:layout_width="150dp"
@@ -31,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/slimespooky"
             android:text="Reservar ahora"
             android:textColor="@color/white"
@@ -52,7 +80,7 @@
             android:id="@+id/datePickerEntrada"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tituloReservar"
+            android:layout_below="@id/mensajeReservas"
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
             android:clickable="true"
@@ -86,12 +114,11 @@
             android:id="@+id/numeroMenores"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/numeroAdultos"
-            android:layout_alignStart="@id/botonReservar"
-            android:layout_marginStart="25dp"
+            android:layout_alignTop="@id/numeroAdultos"
             android:ems="10"
             android:inputType="number"
             android:minHeight="48dp"
+            android:layout_marginStart="10dp"
             android:text=""
             android:textAlignment="center"
             android:hint="0"
@@ -126,6 +153,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/botonReservar"
             tools:layout="@layout/fragment_habitaciones" />
+
+        <TextView
+            android:id="@+id/mensajeReservas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tituloReservar"
+            android:layout_centerInParent="true"
+            tools:text="Mensaje reservas" />
 
     </RelativeLayout>
 </FrameLayout>

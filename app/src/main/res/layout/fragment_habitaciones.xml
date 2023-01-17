@@ -16,12 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.05"
-            android:text="TextView" />
+            android:text="TextView"
+            android:visibility="gone" />
 
         <GridView
             android:id="@+id/gridHabitaciones"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:numColumns="2"
             android:layout_weight="1"/>
 
     </LinearLayout>
