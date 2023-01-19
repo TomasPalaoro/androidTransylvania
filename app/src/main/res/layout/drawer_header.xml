@@ -6,11 +6,13 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:src="@drawable/perfil"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:gravity="center"
-        android:text="USUARIO"/>
+        android:text="BIENVENID@" />
 </LinearLayout>

@@ -1,7 +1,5 @@
 package com.example.hoteltransylvania.fragments;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,7 +25,7 @@ public class RegistroFragment extends Fragment {
 
     TextView cajaNombre, cajaPass, cajaPass2, mensajes;
 
-    String nombre = "";
+    String email = "";
     String pass = "";
     String pass2 = "";
 
@@ -57,12 +55,12 @@ public class RegistroFragment extends Fragment {
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nombre = cajaNombre.getText().toString();
+                email = cajaNombre.getText().toString();
                 pass = cajaPass.getText().toString();
                 pass2 = cajaPass2.getText().toString();
                 if (!pass.equals(pass2)) mensajes.setText("Las contraseñas no coinciden");
                 else{
-                    if (!validarNombre(nombre)) mensajes.setText("Nombre no válido");
+                    if (!validarEmail(email)) mensajes.setText("Email no válido");
                     else if (!validarPass(pass)) mensajes.setText("Contraseña no válida");
                     else{
                         mensajes.setText("");
@@ -79,7 +77,7 @@ public class RegistroFragment extends Fragment {
     }
 
     public void registrar(){
-        usuarioViewModel.insertarUsuario(new Usuario(nombre,pass,"",""));
+        usuarioViewModel.insertarUsuario(new Usuario(email,pass,"",""));
     }
 
     public final static boolean validarPass(String pass){
@@ -107,8 +105,17 @@ public class RegistroFragment extends Fragment {
         return true;
     }
 
+    public final static boolean validarEmail(String email){
+        if (!isValidEmail(email)) return false;
+        return true;
+    }
+
     public final static boolean isValidPassword(String target) {
         return Pattern.compile("^(?=.*\\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{4,12}$").matcher(target).matches();
+    }
+
+    public final static boolean isValidEmail(String target){
+        return Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$").matcher(target).matches();
     }
 
     public final static boolean isValidName(String target) {
@@ -116,6 +123,6 @@ public class RegistroFragment extends Fragment {
     }
 
     public void inicializar(){
-        usuarioViewModel.insertarUsuario(new Usuario("Tomas","12345asda","Tomás","Palaoro"));
+        usuarioViewModel.insertarUsuario(new Usuario("tomas@prueba.com","12345asda","Tomás","Palaoro"));
     }
 }

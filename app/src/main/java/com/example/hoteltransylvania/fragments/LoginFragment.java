@@ -65,7 +65,7 @@ public class LoginFragment extends Fragment {
         mensajes = view.findViewById(R.id.mensaje);
         //SharedPreferences preferencias = getActivity().getApplicationContext().getSharedPreferences("datos", 0);
         if (sharedPreferences.getBoolean("recordar",false)){
-            cajaNombre.setText(sharedPreferences.getString("username",""));
+            cajaNombre.setText(sharedPreferences.getString("email",""));
             switchRecordar.setChecked(true);
         }
 
