@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.hoteltransylvania.R;
+import com.example.hoteltransylvania.fragments.InfoHabitacionFragment;
 import com.example.hoteltransylvania.fragments.OcioFragment;
 import com.example.hoteltransylvania.fragments.ReservasFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class InicioActivity extends AppCompatActivity {
 
+    static FragmentManager fragmentManager;
+    static ReservasFragment reservasFragment;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
@@ -24,10 +27,10 @@ public class InicioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         OcioFragment ocioFragment = new OcioFragment();
-        ReservasFragment reservasFragment = new ReservasFragment();
+        reservasFragment = new ReservasFragment();
 
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.miDrawer);
@@ -52,6 +55,24 @@ public class InicioActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public static void mostrarInfoHabitacion(Integer imagen, Double precio, String nombre, String descripcion){
+        InfoHabitacionFragment infoHabitacionFragment = new InfoHabitacionFragment();
+        Bundle infoHabitacion = new Bundle();
+        infoHabitacion.putInt( "imagen" , imagen);
+        infoHabitacion.putDouble( "precio" , precio);
+        infoHabitacion.putString( "descripcion" , descripcion);
+        infoHabitacionFragment.setArguments(infoHabitacion);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentPrincipal, infoHabitacionFragment);
+        fragmentTransaction.commit();
+    }
+
+    public static void volverFragment(){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentPrincipal, reservasFragment);
+        fragmentTransaction.commit();
     }
     /*
     public void irReservas(View view) {

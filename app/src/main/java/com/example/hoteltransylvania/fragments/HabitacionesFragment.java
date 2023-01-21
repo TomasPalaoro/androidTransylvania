@@ -8,10 +8,12 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.hoteltransylvania.R;
+import com.example.hoteltransylvania.activities.InicioActivity;
 import com.example.hoteltransylvania.data.entities.Habitacion;
 import com.example.hoteltransylvania.viewmodels.HabitacionViewModel;
 
@@ -49,6 +51,15 @@ public class HabitacionesFragment extends Fragment {
         precioMax = arguments.getInt("precioMaximo");
         mensaje.setText(personas+" "+precioMax);
         buscar();
+
+        //Bundle infoHabitacion = new Bundle();
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                InicioActivity.mostrarInfoHabitacion(imagenes.get(i), precios.get(i),"",descripciones.get(i));
+            }
+        });
 
         return view;
     }
