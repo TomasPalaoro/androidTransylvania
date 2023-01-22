@@ -1,7 +1,6 @@
 package com.example.hoteltransylvania.fragments;
 
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -59,8 +58,8 @@ public class InfoHabitacionFragment extends Fragment {
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!infoHabitacion.getBoolean("esReserva",false)) InicioActivity.volverFragment("habitaciones");
-                else InicioActivity.volverFragment("reservas");
+                if (!infoHabitacion.getBoolean("esReserva",false)) InicioActivity.irFragment("habitaciones");
+                else InicioActivity.irFragment("reservas");
             }
         });
 
