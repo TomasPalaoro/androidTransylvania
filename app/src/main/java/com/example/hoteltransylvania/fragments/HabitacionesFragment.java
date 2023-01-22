@@ -30,6 +30,10 @@ public class HabitacionesFragment extends Fragment {
 
     TextView mensaje;
     int personas, precioMax;
+    /**
+     * Distingue los llamamientos a infoHabitacion desde reservas
+     */
+    boolean esReserva;
 
     //CONEXION CON VIEW MODEL
     private HabitacionViewModel habitacionViewModel;
@@ -48,17 +52,22 @@ public class HabitacionesFragment extends Fragment {
 
         mensaje = view.findViewById(R.id.mensajeHabitacion);
         Bundle arguments = getArguments();
-        personas = arguments.getInt("numeroPersonas");
-        precioMax = arguments.getInt("precioMaximo");
-        mensaje.setText(personas+" "+precioMax);
-        buscar();
-
-        //Bundle infoHabitacion = new Bundle();
+        if (arguments != null){
+            personas = arguments.getInt("numeroPersonas",0);
+            precioMax = arguments.getInt("precioMaximo",0);
+            mensaje.setText(personas+" "+precioMax);
+            esReserva = true;
+            buscar();
+        }
+        else{
+            esReserva = false;
+            mostrarListado();
+        }
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                InicioActivity.mostrarInfoHabitacion(ids.get(i),imagenes.get(i), precios.get(i),descripciones.get(i), personas);
+                InicioActivity.mostrarInfoHabitacion(ids.get(i),imagenes.get(i), precios.get(i),descripciones.get(i), personas, esReserva);
             }
         });
 
@@ -72,10 +81,32 @@ public class HabitacionesFragment extends Fragment {
             }else{
                 System.out.println("entra");
                 for (Habitacion hab :listaHabitaciones){
-                    ids.add(hab.getId());
-                    imagenes.add(hab.getImagen());
-                    descripciones.add((hab.getDescrip()));
-                    precios.add(hab.getPrecio());
+                    if (!ids.contains(hab.getId())){
+                        ids.add(hab.getId());
+                        imagenes.add(hab.getImagen());
+                        descripciones.add((hab.getDescrip()));
+                        precios.add(hab.getPrecio());
+                    }
+                }
+                HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,ids,precios);
+                grid.setAdapter(habitacionesCustomAdapter);
+            }
+        });
+    }
+
+    public void mostrarListado(){
+        habitacionViewModel.devolverTodasHabitaciones().observe(getViewLifecycleOwner(),listaHabitaciones->{
+            if(listaHabitaciones==null){
+                System.out.println("null");
+            }else{
+                System.out.println("entra");
+                for (Habitacion hab :listaHabitaciones){
+                    if (!ids.contains(hab.getId())){
+                        ids.add(hab.getId());
+                        imagenes.add(hab.getImagen());
+                        descripciones.add((hab.getDescrip()));
+                        precios.add(hab.getPrecio());
+                    }
                 }
                 HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,ids,precios);
                 grid.setAdapter(habitacionesCustomAdapter);

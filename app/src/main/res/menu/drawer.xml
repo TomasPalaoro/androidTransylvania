@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
+            android:id="@+id/habitaciones"
+            android:checked="true"
+            android:title="Habitaciones" />
+        <item
             android:id="@+id/reservas"
             android:checked="true"
             android:title="Reservas" />

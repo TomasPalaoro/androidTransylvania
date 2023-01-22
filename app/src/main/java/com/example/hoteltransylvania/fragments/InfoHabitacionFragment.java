@@ -54,10 +54,13 @@ public class InfoHabitacionFragment extends Fragment {
         tvNombre.setText(id);
         tvDescripcion.setText(descripcion);
 
+        if (!infoHabitacion.getBoolean("esReserva",false)) reservar.setVisibility(View.GONE);
+
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InicioActivity.volverFragment();
+                if (!infoHabitacion.getBoolean("esReserva",false)) InicioActivity.volverFragment("habitaciones");
+                else InicioActivity.volverFragment("reservas");
             }
         });
 

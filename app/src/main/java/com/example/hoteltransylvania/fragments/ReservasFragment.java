@@ -39,7 +39,7 @@ public class ReservasFragment extends Fragment {
     int precioMax;
     TextView mensajeReservas;
 
-    static boolean entradaIntroducida, salidaIntroducida;
+    //static boolean entradaIntroducida, salidaIntroducida;
     EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores, numeroPrecio;
 
     //CONEXION CON VIEW MODEL
@@ -67,22 +67,22 @@ public class ReservasFragment extends Fragment {
         fragmentManager = getChildFragmentManager();
 
         pickerEntrada = view.findViewById(R.id.datePickerEntrada);
-        entradaIntroducida = false;
+        //entradaIntroducida = false;
         pickerSalida = view.findViewById(R.id.datePickerSalida);
-        salidaIntroducida = false;
+        //salidaIntroducida = false;
 
         pickerEntrada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mostrarSeleccionFecha(pickerEntrada);
-                entradaIntroducida = true;
+                //entradaIntroducida = true;
             }
         });
         pickerSalida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mostrarSeleccionFecha(pickerSalida);
-                salidaIntroducida = true;
+                //salidaIntroducida = true;
             }
         });
 
@@ -93,7 +93,10 @@ public class ReservasFragment extends Fragment {
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (entradaIntroducida && salidaIntroducida){
+                //
+                //Comprueba que los campos no estén vacíos
+                //
+                if ((!pickerEntrada.getText().toString().equals("")) && (!pickerSalida.getText().toString().equals(""))){
                     mensajeReservas.setText("");
                     if (numeroAdultos.getText().toString().equals("")) adultos = 1;
                     else adultos = Integer.parseInt(numeroAdultos.getText().toString());
@@ -187,7 +190,7 @@ public class ReservasFragment extends Fragment {
                 1,
                 "Al entrar en la habitación, serás recibido por una iluminación tenue y sombras espeluznantes que bailan a través de las paredes. La habitación está decorada con telarañas y calabazas espeluznantes. La cama está hecha con sábanas negras y naranjas y una funda nórdica blanca fantasmal. Las mesitas de noche están adornadas con candelabros y dulces en forma de calavera. Las paredes están adornadas con carteles de películas de terror clásicas y un retrato de una figura fantasmal que cuelga sobre la cama.",
                 40,
-                R.drawable.habitacion));
+                R.drawable.habhalloween));
         habitacionViewModel.insertarHabitacion(new Habitacion(
                 "Hab. Infantil",
                 3,

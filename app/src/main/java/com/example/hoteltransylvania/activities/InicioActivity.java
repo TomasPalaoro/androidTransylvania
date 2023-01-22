@@ -3,6 +3,7 @@ package com.example.hoteltransylvania.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.data.entities.Reserva;
+import com.example.hoteltransylvania.fragments.HabitacionesFragment;
 import com.example.hoteltransylvania.fragments.InfoHabitacionFragment;
 import com.example.hoteltransylvania.fragments.OcioFragment;
 import com.example.hoteltransylvania.fragments.ReservasFragment;
@@ -28,6 +30,7 @@ public class InicioActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     static ReservaViewModel reservaViewModel;
+    static HabitacionesFragment habitacionesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class InicioActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
+        habitacionesFragment = new HabitacionesFragment();
         OcioFragment ocioFragment = new OcioFragment();
         reservasFragment = new ReservasFragment();
 
@@ -52,6 +56,10 @@ public class InicioActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (item.getItemId()){
+                    case R.id.habitaciones:
+                        fragmentTransaction.replace(R.id.fragmentPrincipal, habitacionesFragment);
+                        fragmentTransaction.commit();
+                        break;
                     case R.id.reservas:
                         fragmentTransaction.replace(R.id.fragmentPrincipal, reservasFragment);
                         fragmentTransaction.commit();
@@ -76,8 +84,9 @@ public class InicioActivity extends AppCompatActivity {
      * @param precio
      * @param descripcion
      * @param personas
+     * @param esReserva
      */
-    public static void mostrarInfoHabitacion(String id, Integer imagen, Double precio, String descripcion, int personas){
+    public static void mostrarInfoHabitacion(String id, Integer imagen, Double precio, String descripcion, int personas, boolean esReserva){
         InfoHabitacionFragment infoHabitacionFragment = new InfoHabitacionFragment();
         Bundle infoHabitacion = new Bundle();
         infoHabitacion.putString("id",id);
@@ -85,6 +94,7 @@ public class InicioActivity extends AppCompatActivity {
         infoHabitacion.putDouble( "precio" , precio);
         infoHabitacion.putString( "descripcion" , descripcion);
         infoHabitacion.putInt( "personas" , personas);
+        infoHabitacion.putBoolean("esReserva", esReserva);
         infoHabitacionFragment.setArguments(infoHabitacion);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentPrincipal, infoHabitacionFragment);
@@ -92,16 +102,23 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     /**
-     * Reemplaza el fragment principal por el de reservas
+     * Reemplaza el fragment principal por el indicado
      */
-    public static void volverFragment(){
+    public static void volverFragment(String nombreFragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentPrincipal, reservasFragment);
+        switch (nombreFragment){
+            case "reservas":
+                fragmentTransaction.replace(R.id.fragmentPrincipal, reservasFragment);
+                break;
+            case "habitaciones":
+                fragmentTransaction.replace(R.id.fragmentPrincipal, habitacionesFragment);
+                break;
+        }
         fragmentTransaction.commit();
     }
 
     public static void reservarHabitacion(String fechaEntrada, String fechaSalida, int personas, String idUsuario, String idHabitacion){
         reservaViewModel.insertarReserva(new Reserva(fechaEntrada,fechaSalida,personas,idUsuario,idHabitacion));
-        volverFragment();
+        volverFragment("reservas");
     }
 }
