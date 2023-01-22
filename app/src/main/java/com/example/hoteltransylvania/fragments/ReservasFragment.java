@@ -164,8 +164,35 @@ public class ReservasFragment extends Fragment {
      * Crea las habitaciones por defecto si no existen en la base de datos
      */
     public void inicializar(){
-        habitacionViewModel.insertarHabitacion(new Habitacion("1", 2,"una habitacion",23,R.drawable.habitacion));
-        habitacionViewModel.insertarHabitacion(new Habitacion("2", 1,"otra habitacion",10,R.drawable.habitacion));
-        habitacionViewModel.insertarHabitacion(new Habitacion("3", 4,"y otra habitacion",50,R.drawable.habitacion));
+        habitacionViewModel.insertarHabitacion(new Habitacion(
+                "Hab. Descanso Macabro",
+                1,
+                "Esta habitación es perfecta para personas que viajan solas y quieren tener una noche de sueño cómoda y espeluznante. Las paredes de la habitación están adornadas con carteles de películas de terror clásicas y un retrato de una figura fantasmal que cuelga sobre la cama. El baño también ha sido decorado con un toque macabro, con una bañera con patas y una cortina de ducha negra y naranja. El lavabo está decorado con un dosificador de jabón en forma de calavera y un portacepillos a juego.",
+                45,
+                R.drawable.habitacion));
+        habitacionViewModel.insertarHabitacion(new Habitacion(
+                "Hab. Stranger Things",
+                2,
+                "Esta habitación es perfecta para los fanáticos de \"Stranger Things\". Es una experiencia divertida e inmersiva que te transportará a los años 80 y te sumergirá en el mundo de la serie. Al entrar en la habitación te encontrarñas con un mural de la icónica pared alfabeto del programa. La habitación también tiene una característica única, una puerta oculta que conduce a una habitación secreta, decorada con un colorido letrero de neón.",
+                65,
+                R.drawable.habstrangerthings));
+        habitacionViewModel.insertarHabitacion(new Habitacion(
+                "Hab. Asesinato misterioso",
+                4,
+                "La característica principal de esta habitación es una serie de pistas y acertijos que los visitantes pueden resolver para descubrir la identidad del \"asesino\". Estas pistas se pueden encontrar ocultas por toda la habitación, como mensajes crípticos escritos en las paredes, compartimentos ocultos y pasadizos secretos. Esta habitación es perfecta para los huéspedes que aman un buen misterio y disfrutan resolviendo acertijos.",
+                80,
+                R.drawable.habasesinatomisterioso));
+        habitacionViewModel.insertarHabitacion(new Habitacion(
+                "Hab. Halloween",
+                1,
+                "Al entrar en la habitación, serás recibido por una iluminación tenue y sombras espeluznantes que bailan a través de las paredes. La habitación está decorada con telarañas y calabazas espeluznantes. La cama está hecha con sábanas negras y naranjas y una funda nórdica blanca fantasmal. Las mesitas de noche están adornadas con candelabros y dulces en forma de calavera. Las paredes están adornadas con carteles de películas de terror clásicas y un retrato de una figura fantasmal que cuelga sobre la cama.",
+                40,
+                R.drawable.habitacion));
+        habitacionViewModel.insertarHabitacion(new Habitacion(
+                "Hab. Infantil",
+                3,
+                "Esta es la habitación perfecta para los más pequeños de la familia. Disfrutarán de una ambientación tenebrosa a la vez que amistosa. Las mesitas de noche están adornadas con candelabros y dulces en forma de calavera. Se puede activar un sistema de sonido incorporado en la habitación, que reproduce música y distintos efectos de sonido para crear el ambiente.",
+                50,
+                R.drawable.habinfantil));
     }
 }

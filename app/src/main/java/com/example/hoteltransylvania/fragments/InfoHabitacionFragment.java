@@ -22,7 +22,7 @@ public class InfoHabitacionFragment extends Fragment {
     TextView tvPrecio, tvNombre, tvDescripcion;
     Integer imagen;
     double precio;
-    String id,nombre,descripcion;
+    String id,descripcion;
     Button reservar, volver;
     int personas;
 
@@ -43,16 +43,15 @@ public class InfoHabitacionFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("datos", 0);
 
         Bundle infoHabitacion = getArguments();
-        id = infoHabitacion.getString("id","1");
+        id = infoHabitacion.getString("id","Habitacion");
         imagen = infoHabitacion.getInt("imagen",R.drawable.habitacion);
         precio = infoHabitacion.getDouble("precio",0);
-        nombre = infoHabitacion.getString("nombre","Habitación");
         descripcion = infoHabitacion.getString("descripcion","");
         personas = infoHabitacion.getInt("personas",0);
 
         ivImagen.setImageResource(imagen);
         tvPrecio.setText(precio+"€");
-        tvNombre.setText(nombre);
+        tvNombre.setText(id);
         tvDescripcion.setText(descripcion);
 
         volver.setOnClickListener(new View.OnClickListener() {

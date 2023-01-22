@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondologo"
     tools:context=".fragments.InfoHabitacionFragment">
 
     <LinearLayout
@@ -17,7 +18,9 @@
         <ImageView
             android:id="@+id/imagenHab"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="400px"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/habitacion" />
 
         <TextView
@@ -25,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="60€"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -33,15 +36,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Habitación de 2 personas"
+            android:background="#7C673AB7"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/tvDescripcion"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:background="#CD673AB7"
+            android:padding="10dp"
+            android:textColor="@color/white"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             android:textAlignment="textStart" />
 
@@ -55,12 +62,14 @@
                 android:id="@+id/botonVolver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/fondoOscuro"
                 android:text="VOLVER" />
 
             <Button
                 android:id="@+id/botonReserva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_700"
                 android:text="RESERVAR" />
 
         </LinearLayout>

@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class HabitacionesCustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<Integer> arrayImagenes;
-    ArrayList<String> descripcion;
+    ArrayList<String> nombres;
     ArrayList<Double> precios;
     LayoutInflater inflater;
 
-    HabitacionesCustomAdapter(Context context, ArrayList<Integer> imagenes, ArrayList<String> descripcion, ArrayList<Double> precios){
+    HabitacionesCustomAdapter(Context context, ArrayList<Integer> imagenes, ArrayList<String> id, ArrayList<Double> precios){
         this.context = context;
         this.arrayImagenes = imagenes;
-        this.descripcion = descripcion;
+        this.nombres = id;
         this.precios = precios;
         inflater=(LayoutInflater.from(context));
     }
@@ -45,7 +45,7 @@ public class HabitacionesCustomAdapter extends BaseAdapter {
         TextView descr = view.findViewById(R.id.miTexto);
         TextView prec = view.findViewById(R.id.miPrecio);
         imageView.setImageResource(arrayImagenes.get(i));
-        descr.setText(descripcion.get(i));
+        descr.setText(nombres.get(i));
         prec.setText(precios.get(i).toString()+"€");
         return view;
     }

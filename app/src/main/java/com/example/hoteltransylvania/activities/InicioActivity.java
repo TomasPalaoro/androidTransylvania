@@ -74,10 +74,10 @@ public class InicioActivity extends AppCompatActivity {
      * @param id
      * @param imagen
      * @param precio
-     * @param nombre
      * @param descripcion
+     * @param personas
      */
-    public static void mostrarInfoHabitacion(String id, Integer imagen, Double precio, String nombre, String descripcion, int personas){
+    public static void mostrarInfoHabitacion(String id, Integer imagen, Double precio, String descripcion, int personas){
         InfoHabitacionFragment infoHabitacionFragment = new InfoHabitacionFragment();
         Bundle infoHabitacion = new Bundle();
         infoHabitacion.putString("id",id);

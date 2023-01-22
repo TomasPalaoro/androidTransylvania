@@ -58,7 +58,7 @@ public class HabitacionesFragment extends Fragment {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                InicioActivity.mostrarInfoHabitacion(ids.get(i),imagenes.get(i), precios.get(i),"",descripciones.get(i), personas);
+                InicioActivity.mostrarInfoHabitacion(ids.get(i),imagenes.get(i), precios.get(i),descripciones.get(i), personas);
             }
         });
 
@@ -77,7 +77,7 @@ public class HabitacionesFragment extends Fragment {
                     descripciones.add((hab.getDescrip()));
                     precios.add(hab.getPrecio());
                 }
-                HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,descripciones,precios);
+                HabitacionesCustomAdapter habitacionesCustomAdapter = new HabitacionesCustomAdapter(getActivity().getApplicationContext(),imagenes,ids,precios);
                 grid.setAdapter(habitacionesCustomAdapter);
             }
         });

@@ -11,9 +11,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:background="@color/fondoNavBar"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
         app:menu="@menu/nav_inferior" />
 </FrameLayout>
