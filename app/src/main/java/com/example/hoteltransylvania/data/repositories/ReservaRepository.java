@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.hoteltransylvania.data.AppDataBase;
 import com.example.hoteltransylvania.data.dao.ReservaDao;
+import com.example.hoteltransylvania.data.entities.Habitacion;
 import com.example.hoteltransylvania.data.entities.Reserva;
 
 import java.util.List;
@@ -38,5 +39,9 @@ public class ReservaRepository {
 
     public LiveData<Reserva> rDevolverReservaConId(String miId){
         return reservaDao.getOne(miId);
+    }
+
+    public LiveData<List<Reserva>> rDevolverReservasWhere(String idUsuario){
+        return reservaDao.getWhere(idUsuario);
     }
 }

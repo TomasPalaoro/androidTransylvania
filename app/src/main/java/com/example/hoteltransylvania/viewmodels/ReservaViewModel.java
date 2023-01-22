@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.hoteltransylvania.data.entities.Habitacion;
 import com.example.hoteltransylvania.data.entities.Reserva;
 import com.example.hoteltransylvania.data.repositories.ReservaRepository;
 
@@ -35,5 +36,8 @@ public class ReservaViewModel extends AndroidViewModel {
 
     public LiveData<Reserva> devolverReservaConId(String miD){
         return reservaRepository.rDevolverReservaConId(miD);
+    }
+    public LiveData<List<Reserva>> devolverReservasWhere(String idUsuario){
+        return reservaRepository.rDevolverReservasWhere(idUsuario);
     }
 }

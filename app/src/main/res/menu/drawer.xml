@@ -8,7 +8,7 @@
         <item
             android:id="@+id/reservas"
             android:checked="true"
-            android:title="Reservas" />
+            android:title="Reservar" />
         <item
             android:id="@+id/ocio"
             android:checked="true"

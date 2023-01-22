@@ -31,4 +31,7 @@ public interface ReservaDao {
     @Query("SELECT * FROM reservas WHERE id = :miId")
     public LiveData<Reserva> getOne(String miId);
 
+    @Query("SELECT * FROM reservas WHERE id_usuario = :idUsuario")
+    public LiveData<List<Reserva>> getWhere(String idUsuario);
+
 }

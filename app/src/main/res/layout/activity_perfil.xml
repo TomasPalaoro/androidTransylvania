@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PerfilActivity"
-    android:background="@drawable/fondoperfil">
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentNavbarPerfil"
-        android:name="com.example.hoteltransylvania.fragments.NavBarFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        tools:layout="@layout/fragment_nav_bar" />
+    android:background="@drawable/fondoperfil"
+    android:orientation="vertical"
+    tools:context=".activities.PerfilActivity">
 
     <TextView
         android:id="@+id/tituloPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/slimespooky"
         android:text="Mi perfil"
         android:textAlignment="center"
@@ -29,21 +22,18 @@
 
     <ImageView
         android:id="@+id/imagenPerfil"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="140dp"
-        app:srcCompat="@drawable/perfil"
-        android:layout_below="@id/tituloPerfil"/>
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/perfil" />
 
     <EditText
         android:id="@+id/etNombrePerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imagenPerfil"
-        android:layout_alignStart="@id/tituloPerfil"
         android:ems="10"
         android:hint="Nombre Completo"
+        android:layout_gravity="center_horizontal"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
@@ -51,31 +41,34 @@
         android:id="@+id/etCorreoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etNombrePerfil"
-        android:layout_alignStart="@id/etNombrePerfil"
         android:ems="10"
         android:hint="Correo electrónico"
+        android:layout_gravity="center_horizontal"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="ejemplo@prueba.gmail" />
-
-    <Button
-        android:id="@+id/botonAplicarPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_below="@id/etCorreoPerfil"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Guardar cambios" />
 
     <ImageView
         android:id="@+id/iconoEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/etNombrePerfil"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/etNombrePerfil"
         android:background="@color/white"
-        app:srcCompat="@drawable/ic_baseline_edit_24" />
-</RelativeLayout>
+        android:visibility="invisible" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="com.example.hoteltransylvania.fragments.HistorialReservasFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_historial_reservas" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavbarPerfil"
+        android:name="com.example.hoteltransylvania.fragments.NavBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_nav_bar" />
+</LinearLayout>
