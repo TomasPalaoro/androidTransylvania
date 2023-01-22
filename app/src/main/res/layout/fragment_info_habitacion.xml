@@ -35,10 +35,11 @@
             android:id="@+id/tvNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Habitación de 2 personas"
             android:background="#7C673AB7"
+            android:fontFamily="@font/slimespooky"
+            android:text="Habitación de 2 personas"
             android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDescripcion"
@@ -47,10 +48,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="#CD673AB7"
+            android:fontFamily="@font/inria_sans"
             android:padding="10dp"
-            android:textColor="@color/white"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

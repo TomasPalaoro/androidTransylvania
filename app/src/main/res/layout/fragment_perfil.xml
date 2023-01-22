@@ -22,7 +22,6 @@
             android:fontFamily="@font/slimespooky"
             android:text="Mi perfil"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="34sp" />
 
         <ImageView

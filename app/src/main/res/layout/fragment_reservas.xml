@@ -62,7 +62,6 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/slimespooky"
             android:text="Reservar ahora"
-            android:textColor="@color/white"
             android:textSize="24sp" />
 
         <Button
@@ -71,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/numeroMenores"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/slimespooky"
             android:onClick="buscarPulsado"
             android:text="Buscar"
             android:backgroundTint="@color/boton"/>

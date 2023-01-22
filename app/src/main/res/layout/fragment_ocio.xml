@@ -10,6 +10,17 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+
+        android:text="PRÓXIMAMENTE...."
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
     <GridView
         android:id="@+id/grid"
         android:layout_width="match_parent"

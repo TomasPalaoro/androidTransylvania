@@ -27,7 +27,7 @@ public class NavBarFragment extends Fragment {
         bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.home:
-                    InicioActivity.irFragment("reservas");
+                    InicioActivity.irFragment("home");
                     break;
                 case R.id.perfil:
                     InicioActivity.irFragment("perfil");

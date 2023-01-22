@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.data.entities.Reserva;
 import com.example.hoteltransylvania.fragments.HabitacionesFragment;
+import com.example.hoteltransylvania.fragments.HomeFragment;
 import com.example.hoteltransylvania.fragments.InfoHabitacionFragment;
 import com.example.hoteltransylvania.fragments.OcioFragment;
 import com.example.hoteltransylvania.fragments.PerfilFragment;
@@ -32,6 +33,7 @@ public class InicioActivity extends AppCompatActivity {
     static OcioFragment ocioFragment;
     static HabitacionesFragment habitacionesFragment;
     static PerfilFragment perfilFragment;
+    static HomeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class InicioActivity extends AppCompatActivity {
         ocioFragment = new OcioFragment();
         reservasFragment = new ReservasFragment();
         perfilFragment = new PerfilFragment();
+        homeFragment = new HomeFragment();
 
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.miDrawer);
@@ -101,10 +104,14 @@ public class InicioActivity extends AppCompatActivity {
 
     /**
      * Reemplaza el fragment principal por el indicado
+     * perfil, home, reservas, ocio, habitaciones
      */
     public static void irFragment(String nombreFragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (nombreFragment){
+            case "home":
+                fragmentTransaction.replace(R.id.fragmentPrincipal, homeFragment);
+                break;
             case "perfil":
                 fragmentTransaction.replace(R.id.fragmentPrincipal, perfilFragment);
                 break;

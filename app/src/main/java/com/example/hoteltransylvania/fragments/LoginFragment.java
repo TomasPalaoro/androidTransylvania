@@ -101,7 +101,7 @@ public class LoginFragment extends Fragment {
                     mensajes.setText("Usuario NO encontrado");
                 }
                 else{
-                    Toast.makeText(getActivity(), "login correcto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "BIENVENID@", Toast.LENGTH_SHORT).show();
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("nombre",objetoUsuario.getNombre());
                     editor.putString("email",objetoUsuario.getEmail());

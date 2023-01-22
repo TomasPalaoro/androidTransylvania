@@ -7,33 +7,13 @@
     android:background="@drawable/fondocalabazas"
     tools:context=".activities.InicioActivity">
 
-    <ImageButton
-        android:id="@+id/botonOcio"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#673AB7"
-        android:contentDescription="ocio"
-        android:onClick="irOcio"
-        android:scaleType="fitXY"
-        android:visibility="gone" />
-
-    <ImageButton
-        android:id="@+id/botonReservas"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#3F51B5"
-        android:contentDescription="reservas"
-        android:onClick="irReservas"
-        android:scaleType="fitXY"
-        android:visibility="gone" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentPrincipal"
-        android:name="com.example.hoteltransylvania.fragments.ReservasFragment"
+        android:name="com.example.hoteltransylvania.fragments.HomeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragmentTop"
-        tools:layout="@layout/fragment_reservas" />
+        tools:layout="@layout/fragment_home" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentTop"
