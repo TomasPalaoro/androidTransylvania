@@ -1,5 +1,6 @@
 package com.example.hoteltransylvania.fragments;
 
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 
@@ -21,8 +22,11 @@ public class InfoHabitacionFragment extends Fragment {
     TextView tvPrecio, tvNombre, tvDescripcion;
     Integer imagen;
     double precio;
-    String nombre,descripcion;
+    String id,nombre,descripcion;
     Button reservar, volver;
+    int personas;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,12 +40,15 @@ public class InfoHabitacionFragment extends Fragment {
         volver = view.findViewById(R.id.botonVolver);
         reservar = view.findViewById(R.id.botonReserva);
 
-        Bundle infoHabitacion = getArguments();
+        sharedPreferences = getActivity().getSharedPreferences("datos", 0);
 
+        Bundle infoHabitacion = getArguments();
+        id = infoHabitacion.getString("id","1");
         imagen = infoHabitacion.getInt("imagen",R.drawable.habitacion);
         precio = infoHabitacion.getDouble("precio",0);
         nombre = infoHabitacion.getString("nombre","Habitación");
         descripcion = infoHabitacion.getString("descripcion","");
+        personas = infoHabitacion.getInt("personas",0);
 
         ivImagen.setImageResource(imagen);
         tvPrecio.setText(precio+"€");
@@ -52,6 +59,13 @@ public class InfoHabitacionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 InicioActivity.volverFragment();
+            }
+        });
+
+        reservar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InicioActivity.reservarHabitacion(sharedPreferences.getString("fechaEntrada",""),sharedPreferences.getString("fechaSalida",""),personas,sharedPreferences.getString("email",""),id);
             }
         });
 

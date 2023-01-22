@@ -43,12 +43,10 @@ public class ReservasFragment extends Fragment {
     EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores, numeroPrecio;
 
     //CONEXION CON VIEW MODEL
-    private ReservaViewModel reservaViewModel;
     private HabitacionViewModel habitacionViewModel;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        reservaViewModel = new ViewModelProvider(this).get(ReservaViewModel.class);
         habitacionViewModel = new ViewModelProvider(this).get(HabitacionViewModel.class);
     }
     ////
@@ -59,8 +57,8 @@ public class ReservasFragment extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences("datos", 0);
         idUsuario = sharedPreferences.getString("email","Tomas");
-        idHabitacion = "1";
-        precioMax = 500;
+        //idHabitacion = "1";
+        //precioMax = 500;
         inicializar();
         buscar = view.findViewById(R.id.botonReservar);
         mensajeReservas = view.findViewById(R.id.mensajeReservas);
@@ -107,6 +105,14 @@ public class ReservasFragment extends Fragment {
                     fechaEntrada = pickerEntrada.getText().toString();
                     fechaSalida = pickerSalida.getText().toString();
 
+                    //
+                    //Guardamos las fechas para que se puedan usar al insertar una reserva en InicioActivity
+                    //
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("fechaEntrada",fechaEntrada);
+                    editor.putString("fechaSalida",fechaSalida);
+                    editor.apply();
+
                     if (adultos<0) mensajeReservas.setText("Debe ir al menos un adulto");
                     else{
                         try {
@@ -127,12 +133,6 @@ public class ReservasFragment extends Fragment {
         return view;
     }
 
-    public void guardarDatos(){
-        reservaViewModel.insertarReserva(new Reserva(fechaEntrada,fechaSalida,(adultos+menores),idUsuario,idHabitacion));
-        System.out.println(fechaEntrada+" "+fechaSalida+" "+(adultos+menores)+" "+idUsuario+" "+idHabitacion);
-    }
-    
-
     private void mostrarSeleccionFecha(final EditText editText) {
         DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -146,6 +146,9 @@ public class ReservasFragment extends Fragment {
         datePickerFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
+    /**
+     * Muestra el fragment que contiene el listado de habitaciones y filtra por los parámetros numeroPersonas y precioMaximo
+     */
     public void iniciarFragmentHabitaciones(){
         habitacionesFragment = new HabitacionesFragment();
         Bundle arguments = new Bundle();
@@ -157,6 +160,9 @@ public class ReservasFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Crea las habitaciones por defecto si no existen en la base de datos
+     */
     public void inicializar(){
         habitacionViewModel.insertarHabitacion(new Habitacion("1", 2,"una habitacion",23,R.drawable.habitacion));
         habitacionViewModel.insertarHabitacion(new Habitacion("2", 1,"otra habitacion",10,R.drawable.habitacion));

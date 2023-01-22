@@ -26,6 +26,7 @@ public class HabitacionesFragment extends Fragment {
     ArrayList<Integer> imagenes = new ArrayList<Integer>();
     ArrayList<String> descripciones = new ArrayList<String>();
     ArrayList<Double> precios = new ArrayList<Double>();
+    ArrayList<String> ids = new ArrayList<String>();
 
     TextView mensaje;
     int personas, precioMax;
@@ -57,7 +58,7 @@ public class HabitacionesFragment extends Fragment {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                InicioActivity.mostrarInfoHabitacion(imagenes.get(i), precios.get(i),"",descripciones.get(i));
+                InicioActivity.mostrarInfoHabitacion(ids.get(i),imagenes.get(i), precios.get(i),"",descripciones.get(i), personas);
             }
         });
 
@@ -69,7 +70,9 @@ public class HabitacionesFragment extends Fragment {
             if(listaHabitaciones==null){
                 System.out.println("null");
             }else{
+                System.out.println("entra");
                 for (Habitacion hab :listaHabitaciones){
+                    ids.add(hab.getId());
                     imagenes.add(hab.getImagen());
                     descripciones.add((hab.getDescrip()));
                     precios.add(hab.getPrecio());
