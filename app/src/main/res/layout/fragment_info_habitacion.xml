@@ -27,6 +27,7 @@
             android:id="@+id/tvPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inria_sans"
             android:text="60€"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -36,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#7C673AB7"
-            android:fontFamily="@font/slimespooky"
+            android:fontFamily="@font/inria_sans"
             android:text="Habitación de 2 personas"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -65,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/fondoOscuro"
+                android:fontFamily="@font/slimespooky"
                 android:text="VOLVER" />
 
             <Button
@@ -72,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_700"
+                android:fontFamily="@font/slimespooky"
                 android:text="RESERVAR" />
 
         </LinearLayout>

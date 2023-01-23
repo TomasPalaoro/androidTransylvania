@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/numeroPrecio"
             android:layout_toEndOf="@id/numeroPrecio"
+            android:fontFamily="@font/inria_sans"
             android:text="Precio Max"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -25,9 +26,10 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/numeroAdultos"
-            android:layout_toEndOf="@id/numeroAdultos"
             android:layout_marginLeft="80dp"
+            android:layout_toEndOf="@id/numeroAdultos"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="€€"
             android:inputType="number"
             android:minHeight="48dp"
@@ -46,6 +48,7 @@
             android:clickable="true"
             android:ems="10"
             android:focusable="false"
+            android:fontFamily="@font/inria_sans"
             android:hint="Fecha de salida"
             android:inputType="date"
             android:maxLines="1"
@@ -86,13 +89,14 @@
             android:clickable="true"
             android:ems="10"
             android:focusable="false"
+            android:fontFamily="@font/inria_sans"
             android:hint="Fecha de entrada"
             android:inputType="date"
             android:maxLines="1"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColorHint="@color/textoEspecial"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/textoEspecial" />
 
         <EditText
             android:id="@+id/numeroAdultos"
@@ -102,28 +106,30 @@
             android:layout_alignStart="@id/botonReservar"
             android:layout_marginStart="25dp"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
+            android:hint="1"
             android:inputType="number"
             android:minHeight="48dp"
             android:text=""
             android:textAlignment="center"
-            android:hint="1"
-            android:textColorHint="@color/textoEspecial"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/textoEspecial" />
 
         <EditText
             android:id="@+id/numeroMenores"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/numeroAdultos"
+            android:layout_marginStart="10dp"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
+            android:hint="0"
             android:inputType="number"
             android:minHeight="48dp"
-            android:layout_marginStart="10dp"
             android:text=""
             android:textAlignment="center"
-            android:hint="0"
-            android:textColorHint="@color/textoEspecial"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/textoEspecial" />
 
         <TextView
             android:id="@+id/textoAdultos"
@@ -131,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/numeroAdultos"
             android:layout_toEndOf="@id/numeroAdultos"
+            android:fontFamily="@font/inria_sans"
             android:text="Adultos"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -142,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/numeroMenores"
             android:layout_toEndOf="@id/numeroMenores"
+            android:fontFamily="@font/inria_sans"
             android:text="Niños"
             android:textAlignment="center"
             android:textColor="@color/white"

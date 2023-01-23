@@ -130,6 +130,6 @@ public class InicioActivity extends AppCompatActivity {
 
     public static void reservarHabitacion(String fechaEntrada, String fechaSalida, int personas, String idUsuario, String idHabitacion){
         reservaViewModel.insertarReserva(new Reserva(fechaEntrada,fechaSalida,personas,idUsuario,idHabitacion));
-        irFragment("reservas");
+        irFragment("perfil");
     }
 }

@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="80px"
         android:layout_weight="1"
+        android:fontFamily="@font/inria_sans"
         android:text="Hab. Halloween"
         android:textAlignment="center"
         android:textSize="16sp"

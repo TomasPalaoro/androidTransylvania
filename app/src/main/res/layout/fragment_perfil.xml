@@ -20,6 +20,7 @@
             android:layout_marginLeft="60dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/slimespooky"
+            android:textColor="@color/white"
             android:text="Mi perfil"
             android:textAlignment="center"
             android:textSize="34sp" />
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="Nombre Completo"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -47,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="Correo electrónico"
             android:inputType="textPersonName"
             android:minHeight="48dp"
