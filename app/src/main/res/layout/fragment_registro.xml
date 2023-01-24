@@ -16,10 +16,10 @@
             android:id="@+id/titul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="REGISTRO"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/slimespooky"
+            android:text="REGISTRATE GRATIS"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/warnings"
@@ -31,9 +31,13 @@
 
         <EditText
             android:id="@+id/email"
+            android:padding="5dp"
+            android:background="#4A673AB7"
+            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="E-mail"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -41,9 +45,13 @@
 
         <EditText
             android:id="@+id/pass"
+            android:padding="5dp"
+            android:background="#4A673AB7"
+            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:minHeight="48dp"
@@ -51,22 +59,37 @@
 
         <EditText
             android:id="@+id/pass2"
+            android:padding="5dp"
+            android:background="#4A673AB7"
+            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/inria_sans"
             android:hint="Repetir Contraseña"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:textColorHint="@color/white"/>
+            android:textColorHint="@color/white" />
 
         <Button
             android:id="@+id/boton"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/purple_700"
-            android:layout_marginBottom="100dp"
+            android:fontFamily="@font/slimespooky"
             android:text="REGISTRAR" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Al registrarte aceptas los términos y condiciones del Hotel Transylvania"
+            android:textAlignment="center"
+            android:textSize="10sp" />
 
     </LinearLayout>
 </FrameLayout>
