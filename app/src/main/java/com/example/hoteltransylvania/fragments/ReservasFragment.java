@@ -3,6 +3,7 @@ package com.example.hoteltransylvania.fragments;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,10 @@ import com.example.hoteltransylvania.data.entities.Reserva;
 import com.example.hoteltransylvania.viewmodels.HabitacionViewModel;
 import com.example.hoteltransylvania.viewmodels.ReservaViewModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ReservasFragment extends Fragment {
 
     Button buscar;
@@ -41,6 +46,8 @@ public class ReservasFragment extends Fragment {
 
     //static boolean entradaIntroducida, salidaIntroducida;
     EditText pickerEntrada, pickerSalida, numeroAdultos, numeroMenores, numeroPrecio;
+
+    Date fecha1, fecha2;
 
     //CONEXION CON VIEW MODEL
     private HabitacionViewModel habitacionViewModel;
@@ -90,6 +97,9 @@ public class ReservasFragment extends Fragment {
         numeroMenores = view.findViewById(R.id.numeroMenores);
         numeroPrecio = view.findViewById(R.id.numeroPrecio);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date currentTime = Calendar.getInstance().getTime();
+
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,34 +107,52 @@ public class ReservasFragment extends Fragment {
                 //Comprueba que los campos no estén vacíos
                 //
                 if ((!pickerEntrada.getText().toString().equals("")) && (!pickerSalida.getText().toString().equals(""))){
-                    mensajeReservas.setText("");
-                    if (numeroAdultos.getText().toString().equals("")) adultos = 1;
-                    else adultos = Integer.parseInt(numeroAdultos.getText().toString());
-                    if (numeroMenores.getText().toString().equals("")) menores = 0;
-                    else menores = Integer.parseInt(numeroMenores.getText().toString());
-                    if (numeroPrecio.getText().toString().equals("")) precioMax = 1000;
-                    else precioMax = Integer.parseInt(numeroPrecio.getText().toString());
-
-                    fechaEntrada = pickerEntrada.getText().toString();
-                    fechaSalida = pickerSalida.getText().toString();
-
                     //
-                    //Guardamos las fechas para que se puedan usar al insertar una reserva en InicioActivity
+                    //Verificar fecha de entrada y fecha de salida
                     //
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("fechaEntrada",fechaEntrada);
-                    editor.putString("fechaSalida",fechaSalida);
-                    editor.apply();
+                    try {
+                        fecha1 = sdf.parse(pickerEntrada.getText().toString());
+                        fecha2 = sdf.parse(pickerSalida.getText().toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    int result = fecha1.compareTo(fecha2);
+                    int result2 = fecha1.compareTo(currentTime);
 
-                    if (adultos<0) mensajeReservas.setText("Debe ir al menos un adulto");
+                    if (result > 0) mensajeReservas.setText("La fecha de entrada no puede ser posterior a la salida");
                     else{
-                        try {
-                            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                        } catch (Exception e) {}
+                        if (result2 < 0) mensajeReservas.setText("Fecha de entrada anterior a la fecha actual");
+                        else{
+                            mensajeReservas.setText("");
+                            if (numeroAdultos.getText().toString().equals("")) adultos = 1;
+                            else adultos = Integer.parseInt(numeroAdultos.getText().toString());
+                            if (numeroMenores.getText().toString().equals("")) menores = 0;
+                            else menores = Integer.parseInt(numeroMenores.getText().toString());
+                            if (numeroPrecio.getText().toString().equals("")) precioMax = 1000;
+                            else precioMax = Integer.parseInt(numeroPrecio.getText().toString());
 
-                        //INICIAR BUSQUEDA
-                        iniciarFragmentHabitaciones();
+                            fechaEntrada = pickerEntrada.getText().toString();
+                            fechaSalida = pickerSalida.getText().toString();
+
+                            //
+                            //Guardamos las fechas para que se puedan usar al insertar una reserva en InicioActivity
+                            //
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("fechaEntrada",fechaEntrada);
+                            editor.putString("fechaSalida",fechaSalida);
+                            editor.apply();
+
+                            if (adultos<0) mensajeReservas.setText("Debe ir al menos un adulto");
+                            else{
+                                try {
+                                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                                } catch (Exception e) {}
+
+                                //INICIAR BUSQUEDA
+                                iniciarFragmentHabitaciones();
+                            }
+                        }
                     }
                 }
                 else{
@@ -140,8 +168,14 @@ public class ReservasFragment extends Fragment {
         DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 porque enero es 0
-                final String fechaSeleccionada = day + " / " + (month+1) + " / " + year;
+
+                String dia = ""+day;
+                if (day<10) dia = "0"+day;
+
+                String mes = ""+(month+1); // +1 porque enero es 0
+                if ((month+1)<10) mes = "0"+(month+1);
+
+                final String fechaSeleccionada = dia + "/" + mes + "/" + year;
                 editText.setText(fechaSeleccionada);
             }
         });

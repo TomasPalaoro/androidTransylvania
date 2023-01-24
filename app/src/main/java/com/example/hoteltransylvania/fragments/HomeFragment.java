@@ -1,5 +1,8 @@
 package com.example.hoteltransylvania.fragments;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hoteltransylvania.R;
 import com.example.hoteltransylvania.activities.InicioActivity;
@@ -18,6 +23,7 @@ import com.example.hoteltransylvania.viewmodels.HabitacionViewModel;
 public class HomeFragment extends Fragment {
 
     Button bRes, bHab, bOcio;
+    TextView telefono,mapa;
 
     //CONEXION CON VIEW MODEL
     private HabitacionViewModel habitacionViewModel;
@@ -31,6 +37,12 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        telefono=view.findViewById(R.id.telefono);
+        mapa=view.findViewById(R.id.mapa);
+
+        telefono.setOnClickListener(vista -> realizarLlamada());
+        mapa.setOnClickListener(vista -> mostrarLocalizacion());
         
         bRes = view.findViewById(R.id.bRes);
         bHab = view.findViewById(R.id.bHab);
@@ -58,6 +70,23 @@ public class HomeFragment extends Fragment {
         crearHabitaciones();
 
         return view;
+    }
+
+    public void realizarLlamada(){
+        Uri number= Uri.parse("tel:+40264594429");
+        Intent callIntent = new Intent(Intent.ACTION_DIAL,number);
+        startActivity(callIntent);
+    }
+
+    public void mostrarLocalizacion(){
+        Uri location = Uri.parse("geo:46.77257698029504, 23.589283580187296");
+        // Uri location = Uri.parse("geo:37.422219,-122.08364?z=14");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+        try {
+            startActivity(mapIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), "NO SE PUEDE MOSTRAR EL MAPA", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
